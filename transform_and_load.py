@@ -39,6 +39,8 @@ def transform_load(spark, filepath, properties):
     except Exception as e:
         print(f"Loaded Spark Dataframe into db error: {e}")
 
-if __name__ == '__main__':
+# wrapper function for Airflow task
+def transform_task():
+    print("Transforming and loading data now...")
     transform_load(spark, filepath, properties)
 

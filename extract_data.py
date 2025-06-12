@@ -81,10 +81,18 @@ def write_to_file(video_data):
         print("Data loaded into file successfully!")
     except Exception as e:
         print(f"Loaded data into JSON file error: {e}")
-        
 
-if __name__ == '__main__':
+# wrapper function for our Airflow DAG task
+def extract_task():
+    print("Data Extraction from Youtube API is starting...")
     playlist_id = get_playlist_id(CHANNEL_ID)
+
+    print("Playlist ID extracted. Extracting video IDs...")
     video_ids = get_video_ids(playlist_id)
+
+    print("Video IDs extracted. Extracting video data now...")
     video_data = get_video_data(video_ids)
+    
+    print("Video data extracted. Writing to file now...")
     write_to_file(video_data)
+
